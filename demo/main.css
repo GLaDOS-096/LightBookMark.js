@@ -1,0 +1,77 @@
+/* Aperture Styles */
+.square {
+	background: rgba(255,255,255,1);
+	margin: 0 auto;
+	width: 15em;
+	height: 15em;
+}
+.shadow:before,
+.shadow:after {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	content:"";
+	box-shadow:
+		inset 10.6em 0em 0em rgba(0, 0, 0, 0.256),
+		inset 0em 10.6em 0em rgba(0, 0, 0, 0.256),
+		inset -10.6em 0em 0em rgba(0, 0, 0, 0.256),
+		inset 0em -10.6em 0em rgba(0, 0, 0, 0.256);
+}
+.shadow:after {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.trans:before,
+.trans:after {
+	transition: box-shadow 1.2s;
+}
+.trans:hover:before,
+.trans:hover:after {
+	box-shadow:
+		inset 1.06em 0em 0em rgba(255, 0, 0, 0.512),
+		inset 0em 1.06em 0em rgba(255, 128, 0, 0.512),
+		inset -1.06em 0em 0em rgba(0, 255, 0, 0.512),	
+		inset 0em -1.06em 0em rgba(0, 128, 255, 0.512)
+}
+.aperture,
+.aperture:before,
+.aperture:after {
+	border-radius: 100%;
+}
+
+/* Other style codes Here */
+.shadow_words {
+	height: 75px;
+	font-family: 'Source Sans Pro', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: 500;
+	color: rgba(128,128,128,0.92);
+	text-align: center;
+	font-size:1.2em;
+	text-shadow: 0.4px 0.4px 0.4px rgba(2,2,2,0.512);
+}
+.blank {
+	height: 120px;
+}
+.console {
+	width: 80px;
+	height: 172px;
+	position:fixed;
+	left:10px;
+	top:1%;
+}
+.box {
+	width: 80px;
+	height: 20px;
+	margin: 0;
+	border: 7.5px solid rgb(255,255,200);
+	text-align: center;
+	transition: 0.8s;
+	font-family: sans-serif;
+	font-weight: 500;
+	color: rgba(128,128,128,0.92);
+}
+.box:hover {
+	background: rgb(212,205,73);
+	border: 7.5px solid rgb(212,205,73);
+	transition: 0.8s;
+}

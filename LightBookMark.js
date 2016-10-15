@@ -1,0 +1,87 @@
+/**
+ *LightBookMark.js
+ *This is a tiny package helping creating bookmarks on pages.
+ *I wrote it in an hour on October 10th.
+ *I gave up being compatible with most versions of IE but maybe not in the future.
+ *It is just a prototype of the final BookMark.js which I'll later push onto GitHub.
+ *I decided not to build it on famous frameworks such as jQuery and Vue.js \
+ *	because coding with original JavaScript furthers my understanding of it.
+ *There are a few probs with this lib especially in efficiency because of too many \
+ *	DOM searches and operations (you'll see it in the demo).
+ *I want to expand it to a larger lib and fix those in the next few weeks or months.
+ *There are a few ideas I've come up with:
+ *	scrollToUpperBookmark();
+ *	scrollToLowerBookmark();
+ *	other packaged methods controlling real DOM bookmarks;
+ *	reconstruction with JavaScript functional programming;
+ *	optimization to have a higher efficiency;
+ *	attempts not to affect blocks' original class names;
+ *	attempts to being compatible with IE;
+ *	etc...
+ *Stay hungry, stay foolish.
+ *To be a better Front-Ender.
+ */
+var lbm = {
+	containerName : "container",
+	blockName : "block",
+	onClassName : "on",
+	offClassName : "off",
+	scrollLoop : false,
+	scrollInterval : null,
+	currentBlock : null,
+	getWindowHeight : function(){
+		return window.innerHeight;
+	},
+	getScrollLeft : function(){
+		return window.pageXOffset;
+	},
+	getScrollTop : function(){
+		return window.pageYOffset;
+	},
+	getElementPosY : function(element){
+		var y = 0;
+		while(element.offsetParent){
+			y += element.offsetTop;
+			element = element.offsetParent;
+		}
+		return y;
+	},
+	scrollTo : function(x,y){
+		if (this.scrollLoop) {
+			var left = this.getScrollLeft();
+			var top = this.getScrollTop();
+			if (Math.abs(left-x) <= 1 && Math.abs(top-y) <= 1) {
+				window.scrollTo(x,y);
+				clearInterval(this.scrollInterval);
+				this.scrollLoop = false;
+				this.scrollInterval = null;
+			} else {
+				window.scrollTo(left+(x-left)/10, top+(y-top)/10);
+			}	
+		} else {		
+			this.scrollInterval = setInterval("lbm.scrollTo("+x+","+y+")",15);
+			this.scrollLoop = true;
+		}
+	},
+	scrollToBookmark : function(num){
+		var container = document.getElementById(this.containerName);
+		var containerHeight = this.getElementPosY(container) + container.offsetHeight;
+		var windowHeight = this.getWindowHeight();
+		var currentBlock = this.currentBlock;
+		if (this.scrollLoop){
+			clearInterval(this.scrollInterval);
+			this.scrollLoop = false;
+			this.scrollInterval = null;
+		}
+		if (currentBlock != null) {
+			currentBlock.className = this.offClassName;
+		}
+		currentBlock = document.getElementById(this.blockName+num);
+		currentBlock.className = this.onClassName;
+		var posY = this.getElementPosY(currentBlock);
+		if (posY > (containerHeight - windowHeight)) {
+			posY = (containerHeight - windowHeight);
+		}
+		this.scrollTo(0,posY);
+	}
+};
