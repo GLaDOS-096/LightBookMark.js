@@ -46,6 +46,25 @@ var lbm = {
 		}
 		return y;
 	},
+	hasClass : function(obj,cls){
+		var _buffer = obj.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+		if (_buffer!=null) {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	removeClass : function(obj,cls){
+		if (this.hasClass(obj,cls)) {
+			var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+			obj.className = obj.className.replace(reg,'');
+		}
+	},
+	addClass : function(obj,cls){
+		if (!this.hasClass(obj,cls)) {
+			obj.className += (" "+cls);
+		}
+	},
 	scrollTo : function(x,y){
 		if (this.scrollLoop) {
 			var left = this.getScrollLeft();
@@ -63,7 +82,7 @@ var lbm = {
 			this.scrollLoop = true;
 		}
 	},
-	scrollToBookmark : function(num){
+	scrollToBookmark : function(symbol,useBlock){
 		var container = document.getElementById(this.containerName);
 		var containerHeight = this.getElementPosY(container) + container.offsetHeight;
 		var windowHeight = this.getWindowHeight();
@@ -74,10 +93,17 @@ var lbm = {
 			this.scrollInterval = null;
 		}
 		if (currentBlock != null) {
-			currentBlock.className = this.offClassName;
+			this.addClass(currentBlock,this.offClassName);
 		}
-		currentBlock = document.getElementById(this.blockName+num);
-		currentBlock.className = this.onClassName;
+		if (useBlock) {
+			currentBlock = document.getElementById(this.blockName+symbol);
+		} else {
+			currentBlock = document.getElementById(symbol);
+		}
+		if (this.hasClass(currentBlock,this.offClassName)) {
+			this.removeClass(currentBlock,this.offClassName);
+		}
+		this.addClass(currentBlock,this.onClassName);
 		var posY = this.getElementPosY(currentBlock);
 		if (posY > (containerHeight - windowHeight)) {
 			posY = (containerHeight - windowHeight);
