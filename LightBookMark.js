@@ -32,10 +32,10 @@ var lbm = {
 	getWindowHeight : function(){
 		return window.innerHeight;
 	},
-	getScrollLeft : function(){
+	getOffsetX : function(){
 		return window.pageXOffset;
 	},
-	getScrollTop : function(){
+	getOffsetY : function(){
 		return window.pageYOffset;
 	},
 	getElementPosY : function(element){
@@ -67,8 +67,8 @@ var lbm = {
 	},
 	scrollTo : function(x,y){
 		if (this.scrollLoop) {
-			var left = this.getScrollLeft();
-			var top = this.getScrollTop();
+			var left = this.getOffsetX();
+			var top = this.getOffsetY();
 			if (Math.abs(left-x) <= 1 && Math.abs(top-y) <= 1) {
 				window.scrollTo(x,y);
 				clearInterval(this.scrollInterval);
@@ -76,15 +76,15 @@ var lbm = {
 				this.scrollInterval = null;
 			} else {
 				window.scrollTo(left+(x-left)/10, top+(y-top)/10);
-			}	
-		} else {		
+			}
+		} else {
 			this.scrollInterval = setInterval("lbm.scrollTo("+x+","+y+")",15);
 			this.scrollLoop = true;
 		}
 	},
 	scrollToBookmark : function(symbol,useBlock){
 		var container = document.getElementById(this.containerName);
-		var containerHeight = this.getElementPosY(container) + container.offsetHeight;
+		var containerPosY = this.getElementPosY(container) + container.offsetHeight;
 		var windowHeight = this.getWindowHeight();
 		var currentBlock = this.currentBlock;
 		if (this.scrollLoop){
@@ -105,9 +105,31 @@ var lbm = {
 		}
 		this.addClass(currentBlock,this.onClassName);
 		var posY = this.getElementPosY(currentBlock);
-		if (posY > (containerHeight - windowHeight)) {
-			posY = (containerHeight - windowHeight);
+		if (posY > (containerPosY - windowHeight)) {
+			posY = (containerPosY - windowHeight);
 		}
 		this.scrollTo(0,posY);
+	},
+	scrollToLowerBookmark : function(){
+		var num = this.blockName.length;
+		var currentBlock = this.currentBlock;
+		if (currentBlock != null) {
+			var currentId = currentBlock.getAttribute("id");
+			var currentNum = currentId.substring(num);
+			this.scrollToBookmark(num+1,true);
+		} else {
+			this.scrollToBookmark(1,true);
+		}
+	},
+	scrollToUpperBookmark : function(){
+		var num = this.blockName.length;
+		var currentBlock = this.currentBlock;
+		if (currentBlock != null){
+			var currentId = currentBlock.getAttribute("id");
+			var currentNum = currentId.substring(num);
+			if (current >= 1) {
+				this.scrollToBookmark(num-1,true);
+			}
+		}
 	}
 };
