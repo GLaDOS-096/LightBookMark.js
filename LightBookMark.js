@@ -6,12 +6,8 @@
  *It is just a prototype of the final BookMark.js which I'll later push onto GitHub.
  *I decided not to build it on famous frameworks such as jQuery and Vue.js \
  *	because coding with original JavaScript furthers my understanding of it.
- *There are a few probs with this lib especially in efficiency because of too many \
- *	DOM searches and operations (you'll see it in the demo).
  *I want to expand it to a larger lib and fix those in the next few weeks or months.
  *There are a few ideas I've come up with:
- *	scrollToUpperBookmark();
- *	scrollToLowerBookmark();
  *	other packaged methods controlling real DOM bookmarks;
  *	reconstruction with JavaScript functional programming;
  *	optimization to have a higher efficiency;
@@ -86,50 +82,41 @@ var lbm = {
 		var container = document.getElementById(this.containerName);
 		var containerPosY = this.getElementPosY(container) + container.offsetHeight;
 		var windowHeight = this.getWindowHeight();
-		var currentBlock = this.currentBlock;
 		if (this.scrollLoop){
 			clearInterval(this.scrollInterval);
 			this.scrollLoop = false;
 			this.scrollInterval = null;
 		}
-		if (currentBlock != null) {
-			this.addClass(currentBlock,this.offClassName);
+		if (this.currentBlock != null) {
+			this.addClass(this.currentBlock,this.offClassName);
 		}
 		if (useBlock) {
-			currentBlock = document.getElementById(this.blockName+symbol);
+			this.currentBlock = document.getElementById(this.blockName+symbol);
 		} else {
-			currentBlock = document.getElementById(symbol);
+			this.currentBlock = document.getElementById(symbol);
 		}
-		if (this.hasClass(currentBlock,this.offClassName)) {
-			this.removeClass(currentBlock,this.offClassName);
+		if (this.hasClass(this.currentBlock,this.offClassName)) {
+			this.removeClass(this.currentBlock,this.offClassName);
 		}
-		this.addClass(currentBlock,this.onClassName);
-		var posY = this.getElementPosY(currentBlock);
+		this.addClass(this.currentBlock,this.onClassName);
+		var posY = this.getElementPosY(this.currentBlock);
 		if (posY > (containerPosY - windowHeight)) {
 			posY = (containerPosY - windowHeight);
 		}
 		this.scrollTo(0,posY);
 	},
-	scrollToLowerBookmark : function(){
+	scrollToSideBookmark : function(uod){
 		var num = this.blockName.length;
-		var currentBlock = this.currentBlock;
-		if (currentBlock != null) {
-			var currentId = currentBlock.getAttribute("id");
-			var currentNum = currentId.substring(num);
-			this.scrollToBookmark(num+1,true);
-		} else {
-			this.scrollToBookmark(1,true);
+		if (this.currentBlock == null) {
+			this.currentBlock = document.getElementById(this.blockName+"0");
+			console.log(this.currentBlock);
 		}
-	},
-	scrollToUpperBookmark : function(){
-		var num = this.blockName.length;
-		var currentBlock = this.currentBlock;
-		if (currentBlock != null){
-			var currentId = currentBlock.getAttribute("id");
-			var currentNum = currentId.substring(num);
-			if (current >= 1) {
-				this.scrollToBookmark(num-1,true);
-			}
+		var currentId = this.currentBlock.getAttribute("id");
+		var currentNum = currentId.substring(num);
+		if (uod==1 || uod==-1) {
+			this.scrollToBookmark(currentNum+uod,true);
+		} else {
+			console.log("Param invalid");
 		}
 	}
 };
