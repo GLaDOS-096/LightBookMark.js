@@ -1,5 +1,3 @@
-module.exports = LightBookMark;
-
 var LightBookMark = function(_containerName, _blockName, _onClassName, _offClassName) {
     return {
         containerName: _containerName,
@@ -105,3 +103,5 @@ var LightBookMark = function(_containerName, _blockName, _onClassName, _offClass
         }
     }
 };
+
+module.exports = LightBookMark;

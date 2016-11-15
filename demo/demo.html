@@ -9,20 +9,21 @@
     </script>
 </head>
 
-<body style="background:rgb(255,255,200);overflow:hidden;">
+<body>
 
-    <div class="console">
+    <div class="nav">
         <p class="box" onclick="lbm.scrollToBookmark(0,true);">Top</p>
         <p class="box" onclick="lbm.scrollToBookmark(1,true);">Step 1</p>
         <p class="box" onclick="lbm.scrollToBookmark(2,true);">Step 2</p>
         <p class="box" onclick="lbm.scrollToBookmark(3,true);">Step 3</p>
         <p class="box" onclick="lbm.scrollToBookmark(4,true);">Step 4</p>
     </div>
+    <p class="arrow arrow_up" onclick="lbm.scrollToSideBookmark(-1);"></p>
+    <p class="arrow arrow_down" onclick="lbm.scrollToSideBookmark(1);"></p>
 
     <div id="container">
 
         <span id="block0"></span>
-        <p class="blank"></p>
         <div>
             <div id="title" class="shadow_words">
                 <p class="blankbox"></p>
