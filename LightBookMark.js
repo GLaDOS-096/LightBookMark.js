@@ -1,5 +1,5 @@
-var LightBookMark = function(_containerName, _blockName, _onClassName, _offClassName) {
-    return {
+module.exports = function(_containerName, _blockName, _onClassName, _offClassName) {
+    var constructBookmark = {
         containerName: _containerName,
         blockName: _blockName,
         onClassName: _onClassName,
@@ -101,7 +101,6 @@ var LightBookMark = function(_containerName, _blockName, _onClassName, _offClass
                 console.log("Param invalid");
             }
         }
-    }
+    };
+    return constructBookmark;
 };
-
-module.exports = LightBookMark;
