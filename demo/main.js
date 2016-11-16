@@ -108,7 +108,7 @@ var LightBookMark = function(_containerName, _blockName, _onClassName, _offClass
 
 module.exports = LightBookMark;
 },{}],2:[function(require,module,exports){
-var __LightBookMark = require("../LightBookMark");
+var __LightBookMark = require("../LightBookMark.js");
 
 var lbm = __LightBookMark("container", "block", "on", "off");
-},{"../LightBookMark":1}]},{},[2]);
+},{"../LightBookMark.js":1}]},{},[2]);

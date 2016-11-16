@@ -1,0 +1,11 @@
+{
+    "name": "lightbookmark.js",
+    "version": "1.0.0",
+    "description": "bookmark your page quick and easy",
+    "main": "LightBookMark.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "GLaDOS",
+    "license": ""
+}
