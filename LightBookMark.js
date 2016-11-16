@@ -1,4 +1,4 @@
-module.exports = function(_containerName, _blockName, _onClassName, _offClassName) {
+var LightBookMark = function(_containerName, _blockName, _onClassName, _offClassName) {
     var constructBookmark = {
         containerName: _containerName,
         blockName: _blockName,
@@ -104,3 +104,5 @@ module.exports = function(_containerName, _blockName, _onClassName, _offClassNam
     };
     return constructBookmark;
 };
+
+module.exports = LightBookMark;
