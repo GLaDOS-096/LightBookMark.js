@@ -105,4 +105,5 @@ var LightBookMark = function(_containerName, _blockName, _onClassName, _offClass
     return constructBookmark;
 };
 
-module.exports = LightBookMark;
+// module.exports = LightBookMark;
+// add this whenever you want to use Node.js
