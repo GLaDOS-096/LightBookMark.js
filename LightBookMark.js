@@ -16,6 +16,15 @@ var LightBookMark = function(_containerName, _blockName, _onClassName, _offClass
         getOffsetY: function() {
             return window.pageYOffset;
         },
+		getElementPosX: function(element) {
+            var x = 0;
+            while (element.offsetParent) {
+                x += element.offsetLeft;
+                element = element.offsetParent;
+            }
+            return x;
+        },
+
         getElementPosY: function(element) {
             var y = 0;
             while (element.offsetParent) {
