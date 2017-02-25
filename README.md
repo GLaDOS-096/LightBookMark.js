@@ -1,9 +1,9 @@
 # LightBookMark.js
 
-* a tiny lib using original ECMAScript5 to make your page switch automatically *
+*a tiny lib using original ECMAScript5 to make your page switch automatically*
 ~~ author: GLaDOS-096 ~~
 
-### Basic Settings
+## Basic Settings
 
 `_containerName (element id)`
 
@@ -21,11 +21,11 @@ The class sign showing that the element has been activated
 
 The class sign showing that the element is not activated
 
-### A brief Intro
+## A brief Intro
 
 #### The page
 
-` HTML
+`
 <div class="navList">
 	<div class="btn" onclick="lbm.scrollToBookmark(1,true)"> To Chapter 1 </div>
 	<div class="btn" onclick="lbm.scrollToBookmark(2,true)"> To Chapter 2 </div>
@@ -45,12 +45,12 @@ The class sign showing that the element is not activated
 
 #### The simple code of LBM
 
-`JavaScript
+`
 var lbm = LightBookMark('container','chap','on','off');
 
 `
 
-### APIs
+## APIs
 
 `getWindowHeight()`
 `getOffsetX()`
