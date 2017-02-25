@@ -30,7 +30,9 @@ The class sign showing that the element is not activated
 
 #### The page
 
-`<div class="navList">
+`
+
+<div class="navList">
 	<div class="btn" onclick="lbm.scrollToBookmark(1,true)"> To Chapter 1 </div>
 	<div class="btn" onclick="lbm.scrollToBookmark(2,true)"> To Chapter 2 </div>
 	<div class="btn" onclick="lbm.scrollToBookmark('ex',false)"></div>
