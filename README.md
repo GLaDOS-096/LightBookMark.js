@@ -30,22 +30,21 @@ The class sign showing that the element is not activated
 
 #### The page
 
+`<div class="navList">
+   <div class="btn" onclick="lbm.scrollToBookmark(1,true)"> To Chapter 1 </div>
+   <div class="btn" onclick="lbm.scrollToBookmark(2,true)"> To Chapter 2 </div>
+   <div class="btn" onclick="lbm.scrollToBookmark('ex',false)"></div>
+   <div class="btn" onclick="lbm.scrollToBookmark(3,true)"> To Chapter 3 </div>
+   <div class="arrow arrow-up" onclick="lbm.scrollToSideBookmark(-1)"></div>
+   <div class="arrow arrow-down" onclick="lbm.scrollToSideBookmark(1)"></div>
+</div>
 `
 
-<div class="navList">
-	<div class="btn" onclick="lbm.scrollToBookmark(1,true)"> To Chapter 1 </div>
-	<div class="btn" onclick="lbm.scrollToBookmark(2,true)"> To Chapter 2 </div>
-	<div class="btn" onclick="lbm.scrollToBookmark('ex',false)"></div>
-	<div class="btn" onclick="lbm.scrollToBookmark(3,true)"> To Chapter 3 </div>
-	<div class="arrow arrow-up" onclick="lbm.scrollToSideBookmark(-1)"></div>
-	<div class="arrow arrow-down" onclick="lbm.scrollToSideBookmark(1)"></div>
-</div>
-
-<div id="container">
-	<div id="chap1" class="off"></div>
-	<div id="chap2" class="on"></div>
-	<div id="ex" class="off"></div>
-	<div id="chap3" class="off"></div>
+`<div id="container">
+   <div id="chap1" class="off"></div>
+   <div id="chap2" class="on"></div>
+   <div id="ex" class="off"></div>
+   <div id="chap3" class="off"></div>
 </div>`
 
 #### The simple code of LBM
