@@ -82,7 +82,7 @@ scroll to a certain bookmark
 * if not 'use block', the arg `symbol` should be the whole name of the bookmark
 
 `scrollToSideBookmark(uod)`
-==only available while 'use block'==
+**only available while 'use block'**
 
 the arg 'uod' refers to 'up or down' whose value ouht to be 1 if down and -1 of up
 no other value is valid here
